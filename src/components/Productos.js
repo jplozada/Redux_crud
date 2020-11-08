@@ -11,10 +11,9 @@ const Productos = () => {
                         <th scope="col">Precio</th>
                         <th scope="col">Acciones</th>
                     </tr>
-                <tbody>
-
-                </tbody>
                 </thead>
+                <tbody>
+                </tbody>
             </table>
         </Fragment>
     );
