@@ -7,10 +7,14 @@ const NuevoProducto = () => {
 
     // State del componente
     const [nombre, guardarNombre] = useState('');
-    const [precio, guardarPrecio] = useState('');
+    const [precio, guardarPrecio] = useState(0);
 
     // Utilizar useDispatch y te crea una función
     const dispatch = useDispatch();
+
+    // Acceder al state del store
+    const cargando = useSelector(state => state.productos.loading);
+    const error = useSelector (state => state.productos.error)
   
     // Mandar a llamar el action de productoAction
     const agregarProducto = producto => dispatch(crearNuevoProductoAction(producto));
@@ -65,12 +69,14 @@ const NuevoProducto = () => {
                                 />
                                 <button
                                     type="submit"
-                                    className="btn btn-primary mt-3 font-weight-bold text-uppercase d-block w-100"
+                                    className="btn btn-primary my-3 font-weight-bold text-uppercase d-block w-100"
                                 >
                                     Agregar
                                 </button>
                             </div>
                         </form>
+                        {cargando ? <p>Cargando...</p> : null }
+                        {error ? <p className="alert alert-danger p2 text-center">Hubo un error</p> : null }
                     </div>
                 </div>
             </div>
