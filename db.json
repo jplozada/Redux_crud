@@ -29,11 +29,6 @@
       "nombre": "mate",
       "precio": 100,
       "id": 8
-    },
-    {
-      "nombre": "Jugo",
-      "precio": 220,
-      "id": 11
     }
   ]
 }
