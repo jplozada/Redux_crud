@@ -17,17 +17,17 @@
     },
     {
       "nombre": "Jugo de Fresa",
-      "precio": "200",
+      "precio": "2001",
       "id": 5
     },
     {
-      "nombre": "leche",
-      "precio": 200,
+      "nombre": "Leche",
+      "precio": "210",
       "id": 7
     },
     {
-      "nombre": "mate",
-      "precio": 100,
+      "nombre": "Mate",
+      "precio": "1012",
       "id": 8
     }
   ]
