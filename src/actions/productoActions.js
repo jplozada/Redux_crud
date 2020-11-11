@@ -53,13 +53,13 @@ const agregarProducto = () => ({
 const agregarProductoExito = producto => ({
     type: AGREGAR_PRODUCTO_EXITO,
     payload: producto
-})
+});
 
 // Si hubo un error
 const agregarProductoError = estado => ({
     type: AGREGAR_PRODUCTO_ERROR,
     payload: estado
-})
+});
 
 // Funcion que descarga los productos de la base de datos
 export function obtenerProductosAction() {
@@ -70,7 +70,7 @@ export function obtenerProductosAction() {
             const respuesta = await clienteAxios.get('/productos');
             dispatch(descargaProductosExitosa(respuesta.data))
         } catch (error) {
-            dispatch(descargaProductosError())
+            dispatch(descargaProductosError());
         }
     }
 }
@@ -78,12 +78,12 @@ export function obtenerProductosAction() {
 const descargarProductos = () => ({
     type: COMENZAR_DESCARGA_PRODUCTOS,
     payload: true 
-})
+});
 
 const descargaProductosExitosa = productos => ({
     type: DESCARGA_PRODUCTOS_EXITO,
     payload: productos
-})
+});
 
 const descargaProductosError = () => ({
     type: DESCARGA_PRODUCTOS_ERROR,
@@ -94,11 +94,26 @@ const descargaProductosError = () => ({
 export function borrarProductoAction(id) {
     return async (dispatch) => {
         dispatch(obtenerProductoEliminar(id));
-        console.log(id);
+        
+        try {
+            await clienteAxios.delete(`/productos/${id}`);
+            dispatch(eliminarProductoExito());
+        } catch (error) {
+            dispatch(eliminarProductoError());
+        }
     }
 }
 
 const obtenerProductoEliminar = id => ({
     type: OBTENER_PRODUCTO_ELIMINAR,
     payload: id
-}); 
+});
+
+const eliminarProductoExito = () => ({
+    type: PRODUCTO_ELIMINADO_EXITO
+});
+
+const eliminarProductoError = () => ({
+    type: PRODUCTO_ELIMINADO_ERROR,
+    payload: true
+});
