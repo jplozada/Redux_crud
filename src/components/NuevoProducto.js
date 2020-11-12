@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 
 // Actions de redux
 import {crearNuevoProductoAction} from '../actions/productoActions';
-import {mostrarAlerta} from '../actions/alertaActions';
+import {mostrarAlerta, ocultarAlertaAction} from '../actions/alertaActions';
 
 const NuevoProducto = ({history}) => {
 
@@ -36,6 +36,8 @@ const NuevoProducto = ({history}) => {
             return;
         }
         // Si no hay errores
+        dispatch(ocultarAlertaAction());
+
         // Crear el nuevo producto
         agregarProducto({
             nombre,

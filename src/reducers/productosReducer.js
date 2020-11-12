@@ -10,8 +10,7 @@ import {
     PRODUCTO_ELIMINADO_ERROR,
     OBTENER_PRODUCTO_EDITAR,
     PRODUCTO_EDITADO_EXITO,
-    PRODUCTO_EDITADO_ERROR,
-    COMENZAR_EDICION_PRODUCTO
+    PRODUCTO_EDITADO_ERROR
 } from '../types';
 
 // Cada reducer tiene su propio state
@@ -23,7 +22,7 @@ const initialState = {
     productoeditar: null
 }
 
-export default function(state = initialState, action){
+export default function productoReducer(state = initialState, action){
     switch(action.type){
         case COMENZAR_DESCARGA_PRODUCTOS:
         case AGREGAR_PRODUCTO:

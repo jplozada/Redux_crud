@@ -43,7 +43,7 @@ export function crearNuevoProductoAction(producto){
                 icon: 'error',
                 title: 'Hubo un error',
                 text: 'Hubo un error, intenta de nuevo'
-            })
+            });
         }
     }
 }
@@ -53,7 +53,7 @@ const agregarProducto = () => ({
     payload: true
 });
 
-// Si el producto se guarda en la abse de datos
+// Si el producto se guarda en la base de datos
 const agregarProductoExito = producto => ({
     type: AGREGAR_PRODUCTO_EXITO,
     payload: producto
@@ -72,7 +72,7 @@ export function obtenerProductosAction() {
 
         try {
             const respuesta = await clienteAxios.get('/productos');
-            dispatch(descargaProductosExitosa(respuesta.data))
+            dispatch(descargaProductosExitosa(respuesta.data));
         } catch (error) {
             dispatch(descargaProductosError());
         }
@@ -146,13 +146,14 @@ const obtenerProductoEditarAction= producto => ({
 // Edita un registro en la API y el State
 export function editarProductoAction(producto){
     return async (dispatch) => {
-        dispatch(editarProducto(producto));
+        dispatch(editarProducto());
         
         try {
             await clienteAxios.put(`/productos/${producto.id}`, producto);
             dispatch(editarProductoExito(producto));
         } catch (error) {
-            
+            console.log(error);
+            dispatch(editarProductoError());
         }
     }
 }
@@ -164,4 +165,9 @@ const editarProducto = () => ({
 const editarProductoExito = producto => ({
     type: PRODUCTO_EDITADO_EXITO,
     payload: producto
+})
+
+const editarProductoError = () => ({
+    type: PRODUCTO_EDITADO_ERROR,
+    payload: true
 })
